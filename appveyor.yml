@@ -1,0 +1,37 @@
+install:
+  - choco install gitversion.portable -pre -y
+
+environment:
+  DNX_BUILD_VERSION: build%APPVEYOR_BUILD_NUMBER%
+
+assembly_info:
+  patch: false
+
+before_build:
+  - dotnet restore
+  - ps: gitversion /l console /output buildserver /updateAssemblyInfo
+
+build:
+  - dotnet --version
+  - dotnet publish .\src\AppSyndication.UserService.Web -o %APPVEYOR_BUILD_FOLDER%\artifacts\web -c Release
+  - dotnet pack .\src\AppSyndication.UserService.Model -o %APPVEYOR_BUILD_FOLDER%\artifacts\nuget -c Release
+
+after_build:
+  - cmd: ECHO nuget pack <Project>\<NuSpec>.nuspec -version "%GitVersion_NuGetVersion%" -prop "target=%CONFIGURATION%"
+  - cmd: nuget pack <Project>\<NuSpec>.nuspec -version "%GitVersion_NuGetVersion%" -prop "target=%CONFIGURATION%"
+  - cmd: appveyor PushArtifact "<NuSpec>.%GitVersion_NuGetVersion%.nupkg"
+
+artifacts:
+  - path: artifacts\web\
+    name: web-artifacts
+
+deploy:
+  - provider: WebDeploy
+    server: https://as-usr.scm.azurewebsites.net:443/msdeploy.axd?site=as-usr
+    website: as-usr
+    username: $as-usr
+    password:
+      secure: qyPdxs1aPgWHVs8Hjv5bY7B0mugJamsXV+yaYyENDMHMnO2zImVHnSvGVx6VvMVLtC8KVETxjxl0CvtBNxG6xw==
+    remove_files: true
+    app_offline: true
+    artifact: web-artifacts
