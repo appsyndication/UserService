@@ -13,13 +13,8 @@ before_build:
 
 build_script:
   - dotnet --version
-  - dotnet publish .\src\AppSyndication.UserService.Web -o %APPVEYOR_BUILD_FOLDER%\artifacts\web -c Release
-  - dotnet pack .\src\AppSyndication.UserService.Model -o %APPVEYOR_BUILD_FOLDER%\artifacts\nuget -c Release
-
-after_build:
-  - cmd: ECHO nuget pack <Project>\<NuSpec>.nuspec -version "%GitVersion_NuGetVersion%" -prop "target=%CONFIGURATION%"
-  - cmd: nuget pack <Project>\<NuSpec>.nuspec -version "%GitVersion_NuGetVersion%" -prop "target=%CONFIGURATION%"
-  - cmd: appveyor PushArtifact "<NuSpec>.%GitVersion_NuGetVersion%.nupkg"
+  - cmd: dotnet publish .\src\AppSyndication.UserService.Web -o %APPVEYOR_BUILD_FOLDER%\artifacts\web -c Release
+  - cmd: dotnet pack .\src\AppSyndication.UserService.Model -o %APPVEYOR_BUILD_FOLDER%\artifacts\nuget -c Release
 
 artifacts:
   - path: artifacts\web\
