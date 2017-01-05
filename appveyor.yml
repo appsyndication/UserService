@@ -4,6 +4,11 @@
 assembly_info:
   patch: false
 
+nuget:
+  account_feed: true
+  project_feed: true
+  disable_publish_on_pr: true
+
 before_build:
   - dotnet restore
 
@@ -15,6 +20,8 @@ build_script:
 artifacts:
   - path: artifacts\web\
     name: web-artifacts
+  - path: artifacts\nuget\
+    name: nuget-artifacts
 
 deploy:
   - provider: WebDeploy
