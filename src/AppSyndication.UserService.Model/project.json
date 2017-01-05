@@ -4,6 +4,16 @@
     "debugType": "portable"
   },
   "dependencies": {},
+
+  "tools": {
+    "dotnet-gitversion": {
+      "version": "*",
+      "imports": [
+        "dotnet"
+      ]
+    }
+  },
+
   "frameworks": {
     "netstandard1.6": {
       "dependencies": {
