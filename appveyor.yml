@@ -1,6 +1,3 @@
-install:
-  - choco install gitversion.portable -pre -y
-
 environment:
   DNX_BUILD_VERSION: build%APPVEYOR_BUILD_NUMBER%
 
@@ -9,7 +6,6 @@ assembly_info:
 
 before_build:
   - dotnet restore
-  - ps: gitversion /l console /output buildserver /updateAssemblyInfo
 
 build_script:
   - dotnet --version
