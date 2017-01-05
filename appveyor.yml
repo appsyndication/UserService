@@ -33,4 +33,8 @@ deploy:
       secure: qyPdxs1aPgWHVs8Hjv5bY7B0mugJamsXV+yaYyENDMHMnO2zImVHnSvGVx6VvMVLtC8KVETxjxl0CvtBNxG6xw==
     remove_files: true
     app_offline: true
+    aspnet_core: true
+    aspnet_core_force_restart: true
+    sync_retry_attempts: 3
+    sync_retry_interval: 3000
     artifact: web-artifacts
