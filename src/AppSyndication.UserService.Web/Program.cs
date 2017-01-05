@@ -14,7 +14,7 @@ namespace WebApplication
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
+                .UseAzureAppServices()
                 .UseStartup<Startup>()
                 .Build();
 
