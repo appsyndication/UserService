@@ -11,7 +11,7 @@ before_build:
   - dotnet restore
   - ps: gitversion /l console /output buildserver /updateAssemblyInfo
 
-build:
+build_script:
   - dotnet --version
   - dotnet publish .\src\AppSyndication.UserService.Web -o %APPVEYOR_BUILD_FOLDER%\artifacts\web -c Release
   - dotnet pack .\src\AppSyndication.UserService.Model -o %APPVEYOR_BUILD_FOLDER%\artifacts\nuget -c Release
