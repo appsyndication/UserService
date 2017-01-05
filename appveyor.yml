@@ -13,9 +13,10 @@ before_build:
   - dotnet restore
 
 build_script:
-  - dotnet --version
-  - cmd: dotnet_gitversion_project.cmd .\src\AppSyndication.UserService.Web  publish -o %APPVEYOR_BUILD_FOLDER%\artifacts\web -c Release
-  - cmd: dotnet_gitversion_project.cmd .\src\AppSyndication.UserService.Model pack -o %APPVEYOR_BUILD_FOLDER%\artifacts\nuget -c Release
+  - cmd: >-
+      dotnet_gitversion_project.cmd .\src\AppSyndication.UserService.Web publish -o %APPVEYOR_BUILD_FOLDER%\artifacts\web -c Release
+
+      dotnet_gitversion_project.cmd .\src\AppSyndication.UserService.Model pack -o %APPVEYOR_BUILD_FOLDER%\artifacts\nuget -c Release
 
 artifacts:
   - path: artifacts\web\
