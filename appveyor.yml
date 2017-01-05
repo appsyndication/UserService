@@ -1,5 +1,5 @@
-environment:
-  DNX_BUILD_VERSION: build%APPVEYOR_BUILD_NUMBER%
+# environment:
+#   DNX_BUILD_VERSION: build%APPVEYOR_BUILD_NUMBER%
 
 assembly_info:
   patch: false
