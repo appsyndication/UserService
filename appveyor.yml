@@ -1,4 +1,4 @@
--
+- # Master build and deploy.
   branches:
     only:
       - master
@@ -48,7 +48,7 @@
 
   skip_tags: true
 
--
+- # Development branches build.
   version: 0.0.1-build-{branch}-{build}
 
   configuration: Debug
