@@ -23,6 +23,9 @@
     - path: artifacts\web\
       name: web-artifacts
 
+  cache:
+    - '%USERPROFILE%\.nuget\packages -> **\project.json'
+
   nuget:
     account_feed: true
     project_feed: true
@@ -61,6 +64,9 @@
 
   build_script:
     - appveyor.cmd
+
+  cache:
+    - '%USERPROFILE%\.nuget\packages -> **\project.json'
 
   nuget:
     account_feed: true
