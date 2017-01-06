@@ -1,36 +1,78 @@
-# environment:
-#   DNX_BUILD_VERSION: build%APPVEYOR_BUILD_NUMBER%
+-
+  branches:
+    only:
+      - master
 
-assembly_info:
-  patch: false
+  version: 0.0.1-build-{build}
 
-nuget:
-  account_feed: true
-  project_feed: true
-  disable_publish_on_pr: true
+  configuration: Release
 
-before_build:
-  - dotnet restore
+  environment:
+    DNX_BUILD_VERSION: build-%APPVEYOR_BUILD_NUMBER%
+    GITHUB_ACCESS_TOKEN:
+      secure: DcAkF5ZAi8KAtzqJRXwWm6GAXrvkpF8Wd2M5I4O3TYPrdRpyoZIhh/ZnFJgITlEC
 
-build_script:
-  - cmd: >-
-      dotnet_gitversion_project.cmd .\src\AppSyndication.UserService.Web publish -o %APPVEYOR_BUILD_FOLDER%\artifacts\web -c Release
+  before_build:
+    - dotnet restore
 
-      dotnet_gitversion_project.cmd .\src\AppSyndication.UserService.Model pack -o %APPVEYOR_BUILD_FOLDER%\artifacts\nuget -c Release
+  build_script:
+    - build.cmd
+    # - cmd: >-
+    #     dotnet .\src\AppSyndication.UserService.Web publish --configuration %CONFIGURATION% --version-suffix build-%APPVEYOR_BUILD_NUMBER% --output %APPVEYOR_BUILD_FOLDER%\artifacts\web
+    #     dotnet .\src\AppSyndication.UserService.Model pack --configuration %CONFIGURATION% --version-suffix build-%APPVEYOR_BUILD_NUMBER% --output %APPVEYOR_BUILD_FOLDER%\artifacts\nuget
 
-artifacts:
-  - path: artifacts\web\
-    name: web-artifacts
-  - path: artifacts\nuget\
-    name: nuget-artifacts
+  artifacts:
+    - path: artifacts\web\
+      name: web-artifacts
+    - path: artifacts\nuget\
 
-deploy:
-  - provider: WebDeploy
-    server: https://as-usr.scm.azurewebsites.net:443/msdeploy.axd?site=as-usr
-    website: as-usr
-    username: $as-usr
-    password:
-      secure: qyPdxs1aPgWHVs8Hjv5bY7B0mugJamsXV+yaYyENDMHMnO2zImVHnSvGVx6VvMVLtC8KVETxjxl0CvtBNxG6xw==
-    remove_files: true
-    app_offline: true
-    artifact: web-artifacts
+  deploy:
+    - provider: WebDeploy
+      server: https://as-usr.scm.azurewebsites.net:443/msdeploy.axd?site=as-usr
+      website: as-usr
+      username: $as-usr
+      password:
+        secure: qyPdxs1aPgWHVs8Hjv5bY7B0mugJamsXV+yaYyENDMHMnO2zImVHnSvGVx6VvMVLtC8KVETxjxl0CvtBNxG6xw==
+      remove_files: true
+      app_offline: true
+      artifact: web-artifacts
+
+  # on_success:
+  #   - ps |
+  #   if ($env:APPVEYOR_REPO_BRANCH -eq "master")
+  #   {
+  #     git config --global credential.helper store
+  #     Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:GITHUB_ACCESS_TOKEN):x-oauth-basic@github.com`n"
+  #     git config --global user.email "a@appsyndication.com"
+  #     git config --global user.name "Apps-Bot"
+  #     git tag -a v$env:APPVEYOR_REPO_BRANCH
+  #     git push --tags origin HEAD:master
+  #   }
+
+  on_success:
+    - git config --global credential.helper store
+    - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:GITHUB_ACCESS_TOKEN):x-oauth-basic@github.com`n"
+    - git config --global user.email "rob@robmensching.com"
+    - git config --global user.name "Rob Mensching"
+    - git tag v%APPVEYOR_BUILD_VERSION%
+    - git push --tags origin HEAD:master
+
+  skip_tags: true
+
+-
+  version: 0.0.1-build-{branch}-{build}
+
+  configuration: Debug
+
+  before_build:
+    - dotnet restore
+
+  build_script:
+    - cmd: >-
+        dotnet .\src\AppSyndication.UserService.Web publish --configuration %CONFIGURATION% --version-suffix build-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_NUMBER% --output %APPVEYOR_BUILD_FOLDER%\artifacts\web
+        dotnet .\src\AppSyndication.UserService.Model pack --configuration %CONFIGURATION% --version-suffix build-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_NUMBER% --output %APPVEYOR_BUILD_FOLDER%\artifacts\nuget
+
+  artifacts:
+    - path: artifacts\nuget\
+
+  skip_tags: true

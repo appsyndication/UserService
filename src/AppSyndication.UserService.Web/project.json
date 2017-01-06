@@ -1,4 +1,6 @@
 {
+  "version": "0.0.1-*",
+
   "userSecretsId": "aspnet-WebApplication-0799fe3e-6eaf-4c5f-b40e-7c6bfd5dfa9a",
 
   "dependencies": {
@@ -96,7 +98,7 @@
   },
 
   "scripts": {
-    "prepublish": [  ],
+    "prepublish": [],
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   },
 
