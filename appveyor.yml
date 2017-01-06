@@ -19,9 +19,9 @@
     - appveyor.cmd
 
   artifacts:
+    - path: artifacts\nuget\
     - path: artifacts\web\
       name: web-artifacts
-    - path: artifacts\nuget\**\*.nupkg
 
   nuget:
     account_feed: true
