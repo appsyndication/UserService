@@ -5,15 +5,15 @@
 
 @pushd %_P%
 
-dotnet pack .\src\AppSyndication.UserService.Model --configuration %CONFIGURATION% --version-suffix %DNX_BUILD_VERSION% --output %_P%artifacts\nuget
+dotnet pack .\src\AppSyndication.UserService.Model --configuration %CONFIGURATION% --version-suffix %DNX_BUILD_VERSION% --output %_P%artifacts\public
 
-dotnet publish .\src\AppSyndication.UserService.Web --configuration %CONFIGURATION% --version-suffix %DNX_BUILD_VERSION% --output %_P%artifacts\web
+dotnet publish .\src\AppSyndication.UserService.Web --configuration %CONFIGURATION% --version-suffix %DNX_BUILD_VERSION% --output %_P%artifacts\deploy
 
-goto :End
+@goto :End
 
 Fail:
-echo Must provide build number.
-exit /b -1
+@echo Must provide build number.
+@exit /b -1
 
 :End
 @popd

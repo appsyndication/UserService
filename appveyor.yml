@@ -19,9 +19,10 @@
     - appveyor.cmd
 
   artifacts:
-    - path: artifacts\nuget\
-    - path: artifacts\web\
-      name: web-artifacts
+    - path: artifacts\deploy\
+      name: deploy-artifacts
+    - path: artifacts\public\**\*.nupkg
+      name: public-artifacts
 
   cache:
     - '%USERPROFILE%\.nuget\packages -> **\project.json'
@@ -39,7 +40,7 @@
         secure: qyPdxs1aPgWHVs8Hjv5bY7B0mugJamsXV+yaYyENDMHMnO2zImVHnSvGVx6VvMVLtC8KVETxjxl0CvtBNxG6xw==
       remove_files: true
       app_offline: true
-      artifact: web-artifacts
+      artifact: deploy-artifacts
 
   on_success:
     - git config --global credential.helper store
