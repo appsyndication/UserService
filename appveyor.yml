@@ -39,7 +39,7 @@
     - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:GITHUB_ACCESS_TOKEN):x-oauth-basic@github.com`n"
     - git config --global user.email "a@appsyndication.com"
     - git config --global user.name "Apps-Bot"
-    - git tag -a v%APPVEYOR_BUILD_VERSION%
+    - git tag -a v%APPVEYOR_BUILD_VERSION% -m "Build v%APPVEYOR_BUILD_VERSION%"
     - git push --tags origin HEAD:master
 
   skip_tags: true
