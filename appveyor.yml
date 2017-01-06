@@ -23,6 +23,10 @@
       name: web-artifacts
     - path: artifacts\nuget\**\*.nupkg
 
+  nuget:
+    account_feed: true
+    project_feed: true
+
   deploy:
     - provider: WebDeploy
       server: https://as-usr.scm.azurewebsites.net:443/msdeploy.axd?site=as-usr
@@ -55,7 +59,11 @@
   before_build:
     - dotnet restore
 
-  artifacts:
-    - path: artifacts\nuget\
+  build_script:
+    - appveyor.cmd
+
+  nuget:
+    account_feed: true
+    project_feed: true
 
   skip_tags: true
