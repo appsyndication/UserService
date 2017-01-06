@@ -16,10 +16,7 @@
     - dotnet restore
 
   build_script:
-    - build.cmd
-    # - cmd: >-
-    #     dotnet .\src\AppSyndication.UserService.Web publish --configuration %CONFIGURATION% --version-suffix build-%APPVEYOR_BUILD_NUMBER% --output %APPVEYOR_BUILD_FOLDER%\artifacts\web
-    #     dotnet .\src\AppSyndication.UserService.Model pack --configuration %CONFIGURATION% --version-suffix build-%APPVEYOR_BUILD_NUMBER% --output %APPVEYOR_BUILD_FOLDER%\artifacts\nuget
+    - appveyor.cmd
 
   artifacts:
     - path: artifacts\web\
@@ -37,24 +34,12 @@
       app_offline: true
       artifact: web-artifacts
 
-  # on_success:
-  #   - ps |
-  #   if ($env:APPVEYOR_REPO_BRANCH -eq "master")
-  #   {
-  #     git config --global credential.helper store
-  #     Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:GITHUB_ACCESS_TOKEN):x-oauth-basic@github.com`n"
-  #     git config --global user.email "a@appsyndication.com"
-  #     git config --global user.name "Apps-Bot"
-  #     git tag -a v$env:APPVEYOR_REPO_BRANCH
-  #     git push --tags origin HEAD:master
-  #   }
-
   on_success:
     - git config --global credential.helper store
     - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:GITHUB_ACCESS_TOKEN):x-oauth-basic@github.com`n"
-    - git config --global user.email "rob@robmensching.com"
-    - git config --global user.name "Rob Mensching"
-    - git tag v%APPVEYOR_BUILD_VERSION%
+    - git config --global user.email "a@appsyndication.com"
+    - git config --global user.name "Apps-Bot"
+    - git tag -a v%APPVEYOR_BUILD_VERSION%
     - git push --tags origin HEAD:master
 
   skip_tags: true
@@ -64,13 +49,11 @@
 
   configuration: Debug
 
+  environment:
+    DNX_BUILD_VERSION: build-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_NUMBER%
+
   before_build:
     - dotnet restore
-
-  build_script:
-    - cmd: >-
-        dotnet .\src\AppSyndication.UserService.Web publish --configuration %CONFIGURATION% --version-suffix build-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_NUMBER% --output %APPVEYOR_BUILD_FOLDER%\artifacts\web
-        dotnet .\src\AppSyndication.UserService.Model pack --configuration %CONFIGURATION% --version-suffix build-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_NUMBER% --output %APPVEYOR_BUILD_FOLDER%\artifacts\nuget
 
   artifacts:
     - path: artifacts\nuget\

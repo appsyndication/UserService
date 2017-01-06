@@ -1,2 +1,0 @@
-dotnet publish .\src\AppSyndication.UserService.Web --configuration %CONFIGURATION% --version-suffix build-%APPVEYOR_BUILD_NUMBER% --output %APPVEYOR_BUILD_FOLDER%\artifacts\web
-dotnet pack .\src\AppSyndication.UserService.Model --configuration %CONFIGURATION% --version-suffix build-%APPVEYOR_BUILD_NUMBER% --output %APPVEYOR_BUILD_FOLDER%\artifacts\nuget
