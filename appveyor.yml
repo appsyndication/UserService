@@ -21,7 +21,7 @@
   artifacts:
     - path: artifacts\web\
       name: web-artifacts
-    - path: artifacts\nuget\
+    - path: artifacts\nuget\**\*.nupkg
 
   deploy:
     - provider: WebDeploy
