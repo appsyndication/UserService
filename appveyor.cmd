@@ -1,7 +1,7 @@
 @setlocal
 @set _P=%~dp0
 @if "%CONFIGURATION%"=="" set CONFIGURATION=Debug
-@if "%DNX_BUILD_VERSION%"=="" set DNX_BUILD_VERSION=build-private-99999.0.0
+@if "%DNX_BUILD_VERSION%"=="" set DNX_BUILD_VERSION=build-private.99999
 
 @pushd %_P%
 
