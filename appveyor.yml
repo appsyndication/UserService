@@ -3,12 +3,12 @@
     only:
       - master
 
-  version: 0.1.0-build.{build}
+  version: 0.1.0-build-{build}
 
   configuration: Release
 
   environment:
-    DNX_BUILD_VERSION: build.%APPVEYOR_BUILD_NUMBER%
+    DNX_BUILD_VERSION: build-%APPVEYOR_BUILD_NUMBER%
     GITHUB_ACCESS_TOKEN:
       secure: DcAkF5ZAi8KAtzqJRXwWm6GAXrvkpF8Wd2M5I4O3TYPrdRpyoZIhh/ZnFJgITlEC
 
@@ -53,12 +53,12 @@
   skip_tags: true
 
 - # Development branches build.
-  version: 0.1.0-build-{branch}.{build}
+  version: 0.1.0-build-{branch}-{build}
 
   configuration: Debug
 
   environment:
-    DNX_BUILD_VERSION: build-%APPVEYOR_REPO_BRANCH%.%APPVEYOR_BUILD_NUMBER%
+    DNX_BUILD_VERSION: build-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_NUMBER%
 
   before_build:
     - dotnet restore
