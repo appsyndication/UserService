@@ -14,10 +14,14 @@ namespace AppSyndication.UserService.Web.Controllers
         [HttpGet]
         public VersionModel Get()
         {
-            var attribute = typeof(VersionController).GetTypeInfo().Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
             var modelVersion = new ModelVersion();
+            var attribute = typeof(VersionController).GetTypeInfo().Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
 
-            return new VersionModel { ModelVersion = modelVersion.Version, ServerVersion = attribute?.InformationalVersion };
+            return new VersionModel
+            {
+                ModelVersion = modelVersion.Version,
+                ServerVersion = attribute?.InformationalVersion
+            };
         }
     }
 }
