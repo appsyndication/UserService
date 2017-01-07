@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 
-namespace WebApplication
+namespace AppSyndication.UserService.Web
 {
     public class Program
     {
@@ -14,6 +10,7 @@ namespace WebApplication
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseUrls("http://0.0.0.0:3003") // this will be overridden by next line when run behind IIS.
                 .UseAzureAppServices()
                 .UseStartup<Startup>()
                 .Build();
