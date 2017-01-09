@@ -9,6 +9,9 @@
 
   environment:
     DNX_BUILD_VERSION: build-%APPVEYOR_BUILD_NUMBER%
+    DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+    DOTNET_CLI_TELEMETRY_OPTOUT: 1
+    NUGET_XMLDOC_MODE: skip
     GITHUB_ACCESS_TOKEN:
       secure: DcAkF5ZAi8KAtzqJRXwWm6GAXrvkpF8Wd2M5I4O3TYPrdRpyoZIhh/ZnFJgITlEC
 
@@ -23,13 +26,6 @@
       name: deploy-artifacts
     - path: artifacts\public\**\*.nupkg
       name: public-artifacts
-
-  cache:
-    - '%USERPROFILE%\.nuget\packages -> **\project.json'
-
-  nuget:
-    account_feed: true
-    project_feed: true
 
   deploy:
     - provider: WebDeploy
@@ -59,18 +55,14 @@
 
   environment:
     DNX_BUILD_VERSION: build-%APPVEYOR_REPO_BRANCH%-%APPVEYOR_BUILD_NUMBER%
+    DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+    DOTNET_CLI_TELEMETRY_OPTOUT: 1
+    NUGET_XMLDOC_MODE: skip
 
   before_build:
     - dotnet restore
 
   build_script:
     - appveyor.cmd
-
-  cache:
-    - '%USERPROFILE%\.nuget\packages -> **\project.json'
-
-  nuget:
-    account_feed: true
-    project_feed: true
 
   skip_tags: true

@@ -10,12 +10,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		appveyor.cmd = appveyor.cmd
 		appveyor.yml = appveyor.yml
 		global.json = global.json
+		nuget.config = nuget.config
 		UserService.System.props = UserService.System.props
 	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AppSyndication.UserService.Web", "src\AppSyndication.UserService.Web\AppSyndication.UserService.Web.xproj", "{367EF49F-8E33-4A3B-9B37-272647B8D27F}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AppSyndication.UserService.Model", "src\AppSyndication.UserService.Model\AppSyndication.UserService.Model.xproj", "{999735E2-459C-47E2-AC2E-7F5330BD34DD}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AppSyndication.Shared.Model", "..\Shared\src\AppSyndication.Shared.Model\AppSyndication.Shared.Model.xproj", "{DF279011-EE93-4974-8675-2BF98BED9E49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +34,10 @@ Global
 		{999735E2-459C-47E2-AC2E-7F5330BD34DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{999735E2-459C-47E2-AC2E-7F5330BD34DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{999735E2-459C-47E2-AC2E-7F5330BD34DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF279011-EE93-4974-8675-2BF98BED9E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF279011-EE93-4974-8675-2BF98BED9E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF279011-EE93-4974-8675-2BF98BED9E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF279011-EE93-4974-8675-2BF98BED9E49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

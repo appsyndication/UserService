@@ -15,8 +15,15 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Kestrel": {
+    "dotnet run": {
       "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "dotnet watch": {
+      "executablePath": "C:\\Program Files\\dotnet\\dotnet.exe",
+      "commandLineArgs": "watch run",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

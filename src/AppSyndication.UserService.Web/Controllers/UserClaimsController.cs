@@ -1,20 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppSyndication.UserService.Web.Controllers
 {
-    [Route("api/[controller]")]
-    public class ValuesController : Controller
+    [Route("user/claims")]
+    public class UserClaimsController : Controller
     {
-        // GET api/values
+        // GET user/claims
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            return this.Json(this.User.Claims.Select(c => new { c.Type, c.ValueType }));
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
+        // GET api/values/sub
+        [HttpGet("{claim}")]
         public string Get(int id)
         {
             return "value";
