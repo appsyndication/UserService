@@ -16,9 +16,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AppSyndication.UserService.Web", "src\AppSyndication.UserService.Web\AppSyndication.UserService.Web.xproj", "{367EF49F-8E33-4A3B-9B37-272647B8D27F}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AppSyndication.UserService.Model", "src\AppSyndication.UserService.Model\AppSyndication.UserService.Model.xproj", "{999735E2-459C-47E2-AC2E-7F5330BD34DD}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AppSyndication.UserService.Models", "src\AppSyndication.UserService.Models\AppSyndication.UserService.Models.xproj", "{999735E2-459C-47E2-AC2E-7F5330BD34DD}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AppSyndication.Shared.Model", "..\Shared\src\AppSyndication.Shared.Model\AppSyndication.Shared.Model.xproj", "{DF279011-EE93-4974-8675-2BF98BED9E49}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AppSyndication.Shared.Models", "..\Shared\src\AppSyndication.Shared.Models\AppSyndication.Shared.Models.xproj", "{DF279011-EE93-4974-8675-2BF98BED9E49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

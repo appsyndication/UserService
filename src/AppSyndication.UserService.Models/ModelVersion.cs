@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace AppSyndication.UserService.Model
+namespace AppSyndication.UserService.Models
 {
     public class ModelVersion
     {

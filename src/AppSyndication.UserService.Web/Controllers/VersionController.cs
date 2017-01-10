@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using AppSyndication.UserService.Model;
+using AppSyndication.UserService.Models;
 using AppSyndication.UserService.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

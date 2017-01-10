@@ -5,7 +5,7 @@
 
 @pushd %_P%
 
-dotnet pack .\src\AppSyndication.UserService.Model --configuration %CONFIGURATION% --version-suffix %DNX_BUILD_VERSION% --output %_P%artifacts\public
+dotnet pack .\src\AppSyndication.UserService.Models --configuration %CONFIGURATION% --version-suffix %DNX_BUILD_VERSION% --output %_P%artifacts\public
 
 dotnet publish .\src\AppSyndication.UserService.Web --configuration %CONFIGURATION% --version-suffix %DNX_BUILD_VERSION% --output %_P%artifacts\deploy
 

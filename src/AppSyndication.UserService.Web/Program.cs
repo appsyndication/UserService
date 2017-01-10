@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
-using AppSyndication.Shared.Model;
+using AppSyndication.Shared.Models;
 
 namespace AppSyndication.UserService.Web
 {
